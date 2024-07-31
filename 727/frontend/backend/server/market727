@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    server_name 185.105.89.222;
+
+    client_max_body_size 100M;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/backend/market727/market727.sock;
+    }
+
+    location /static/ {
+        alias /home/backend/market727/staticfiles/;
+    }
+
+    location /media/ {
+        alias /home/backend/market727/media/;
+    }
+}
